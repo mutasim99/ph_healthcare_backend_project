@@ -23,7 +23,7 @@ const deleteSpecialty = async (id: string): Promise<Specialty> => {
   return specialty
 };
 
-export const SpecialtyService = {
+export const specialtyService = {
   createSpecialty,
   getAllSpecialties,
   deleteSpecialty
