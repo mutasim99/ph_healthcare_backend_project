@@ -1,8 +1,10 @@
+import "dotenv/config"
+
 import app from "./app";
 
 const port = 3000;
 
-const boostrap = async () => {
+const bootstrap = async () => {
   try {
     app.listen(port, () => {
       console.log(`Server is running on http://localhost:${port}`);
@@ -11,4 +13,4 @@ const boostrap = async () => {
     console.error("Error starting the server:", error);
   }
 };
-boostrap();
+bootstrap();

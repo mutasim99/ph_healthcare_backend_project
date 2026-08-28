@@ -3,6 +3,6 @@ import { specialtyRoutes } from "../modules/specialty/specialty.routes";
 
 const router = Router();
 
-router.use(specialtyRoutes);
+router.use("/specialties", specialtyRoutes);
 
 export const indexRoutes = router;
