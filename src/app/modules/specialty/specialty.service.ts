@@ -1,5 +1,5 @@
 import { Specialty } from "../../../generated/prisma/client";
-import { prisma } from "../../../lib/prisma";
+import { prisma } from "../../lib/prisma";
 
 const createSpecialty = async (payload: Specialty): Promise<Specialty> => {
   const specialty = await prisma.specialty.create({
@@ -20,11 +20,11 @@ const deleteSpecialty = async (id: string): Promise<Specialty> => {
       id,
     },
   });
-  return specialty
+  return specialty;
 };
 
 export const SpecialtyService = {
   createSpecialty,
   getAllSpecialties,
-  deleteSpecialty
+  deleteSpecialty,
 };

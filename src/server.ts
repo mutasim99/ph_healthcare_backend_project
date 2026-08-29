@@ -1,8 +1,9 @@
 import "dotenv/config"
 
 import app from "./app";
+import { envVars } from "./app/config/env";
 
-const port = 3000;
+const port = envVars.PORT || 3000;
 
 const bootstrap = async () => {
   try {
