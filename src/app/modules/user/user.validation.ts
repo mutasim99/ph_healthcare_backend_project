@@ -3,7 +3,7 @@ import { Gender } from "../../../generated/prisma/enums";
 
 export const createDoctorZodSchema = z.object({
   password: z
-    .string("Password is required")
+    .string("Password is required and must be string")
     .min(6, "Password must be at least 6 characters")
     .max(20, "Password must be at most 20 characters"),
   doctor: z.object({
