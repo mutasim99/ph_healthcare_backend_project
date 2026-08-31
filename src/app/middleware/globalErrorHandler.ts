@@ -4,6 +4,7 @@ import status from "http-status";
 import z from "zod";
 import { TErrorResponse, TErrorSources } from "../interface/error.interface";
 import { handleZodError } from "../errorHelper/handleZodError";
+import AppError from "../errorHelper/appError";
 
 export const globalErrorHandler = (
   err: any,
@@ -24,6 +25,24 @@ export const globalErrorHandler = (
     statusCode = simplifiedError.statusCode as number;
     message = simplifiedError.message;
     errorSources = [...simplifiedError.errorSources];
+  } else if (err instanceof AppError) {
+    statusCode = err.statusCode;
+    message = err.message;
+    errorSources = [
+      {
+        path: "",
+        message: err.message,
+      },
+    ];
+  } else if (err instanceof Error) {
+    statusCode = status.INTERNAL_SERVER_ERROR;
+    message = err.message;
+    errorSources = [
+      {
+        path: "",
+        message: err.message,
+      },
+    ];
   }
 
   const errorResponse: TErrorResponse = {
