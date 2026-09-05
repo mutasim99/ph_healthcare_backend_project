@@ -27,7 +27,35 @@ const getDoctorById = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const updateDoctor = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const payload = req.body;
+
+  const updateDoctor = DoctorService.updateDoctor(id as string, payload);
+
+  sendResponse(res, {
+    httpStatusCode: status.OK,
+    success: true,
+    message: "Doctor updated successfully",
+    data: updateDoctor,
+  });
+});
+
+const deleteDoctor = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await DoctorService.deleteDoctor(id as string);
+
+  sendResponse(res, {
+    httpStatusCode: status.OK,
+    success: true,
+    message: "Doctor deleted successfully",
+    data: result,
+  });
+});
+
 export const DoctorController = {
   getAllDoctors,
-  getDoctorById
+  getDoctorById,
+  updateDoctor,
+  deleteDoctor,
 };
