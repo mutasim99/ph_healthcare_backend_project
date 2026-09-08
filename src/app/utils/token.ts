@@ -1,7 +1,7 @@
 import { JwtPayload, SignOptions } from "jsonwebtoken";
 import { jwtUtils } from "./jwt";
 import { envVars } from "../config/env";
-import {  Response } from "express";
+import { Response } from "express";
 import { cookieUtils } from "./cookie";
 
 const getAccessToken = (payload: JwtPayload) => {
@@ -38,7 +38,7 @@ const setRefreshToken = (res: Response, token: string) => {
     secure: true,
     sameSite: "none",
     path: "/",
-    maxAge: 1000 * 24 * 60 * 60,
+    maxAge: 1000 * 24 * 60 * 60 * 7,
   });
 };
 
