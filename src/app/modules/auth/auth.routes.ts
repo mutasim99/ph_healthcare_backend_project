@@ -21,6 +21,7 @@ router.post(
   "/logout",
   checkAuth(Role.PATIENT, Role.DOCTOR, Role.ADMIN, Role.SUPER_ADMIN),
 );
+router.post("/verify-email", AuthController.verifyEmail);
 
 router.post("/refresh-token", AuthController.getNewToken);
 export const AuthRoutes = router;

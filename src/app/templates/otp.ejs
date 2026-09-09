@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Security Code</title>
+    <style>
+        /* Email client reset styles */
+        body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+        table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+        img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+        
+        /* Main styles */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            color: #333333;
+        }
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            background-color: #f4f7f9;
+            padding-bottom: 40px;
+        }
+        .main {
+            background-color: #ffffff;
+            margin: 40px auto 0;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 8px;
+            border: 1px solid #eaeff2;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #0056b3; /* Medical/Clinical Blue */
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .header img {
+            max-width: 180px;
+            margin-bottom: 15px;
+        }
+        .header h1 {
+            color: #ffffff;
+            margin: 0;
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .content p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0 0 20px;
+            color: #555555;
+        }
+        .otp-container {
+            background-color: #f0f7ff;
+            border: 2px dashed #0056b3;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .otp-code {
+            font-size: 36px;
+            font-weight: bold;
+            color: #0056b3;
+            letter-spacing: 8px;
+            margin: 0;
+        }
+        .security-notice {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-top: 30px;
+            border-radius: 0 4px 4px 0;
+            font-size: 14px;
+            color: #665000;
+            line-height: 1.5;
+        }
+        .footer {
+            background-color: #f8fafc;
+            padding: 20px 30px;
+            text-align: center;
+            border-top: 1px solid #eaeff2;
+        }
+        .footer p {
+            font-size: 12px;
+            color: #888888;
+            margin: 0 0 10px;
+            line-height: 1.5;
+        }
+        .footer a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <center class="wrapper">
+        <table class="main" width="100%" cellpadding="0" cellspacing="0">
+            <!-- Header Section -->
+            <tr>
+                <td class="header">
+                    <!-- Replace the src with your actual hosted logo URL -->
+                    <img src="https://share.gemini.google/qF0c6Y9SOtT5" alt="Healthcare Provider Logo">
+                    <h1>Identity Verification</h1>
+                </td>
+            </tr>
+            
+            <!-- Body Section -->
+            <tr>
+                <td class="content">
+                    <p>Hello <strong><%= name ? name : 'Patient' %></strong>,</p>
+                    <p>We received a request to access your secure patient portal. To ensure the privacy of your health records, please enter the following One-Time Password (OTP) to complete your login.</p>
+                    
+                    <div class="otp-container">
+                        <p class="otp-code"><%= otp %></p>
+                    </div>
+                    
+                    <p>This code is valid for the next <strong>3 minutes</strong>. If you did not request this verification, please ignore this email and secure your account.</p>
+                    
+                    <div class="security-notice">
+                        <strong>🔒 Security Alert:</strong> Never share this code with anyone. Our medical staff and support team will <strong>never</strong> ask you for this password.
+                    </div>
+                </td>
+            </tr>
+            
+            <!-- Footer Section -->
+            <tr>
+                <td class="footer">
+                    <p>&copy; <%= new Date().getFullYear() %> Your Healthcare Provider. All rights reserved.</p>
+                    <p>123 Medical Center Drive, Health City, HC 90210</p>
+                    <p>
+                        Need assistance? <a href="#">Visit our Help Center</a> or call 01795-400015
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </center>
+</body>
+</html>
