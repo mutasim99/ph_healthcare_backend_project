@@ -11,7 +11,7 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  Plugin: [bearer()],
+  plugins: [bearer()],
 
   user: {
     additionalFields: {

@@ -228,7 +228,7 @@ const changePassword = async (
 ) => {
   const session = await auth.api.getSession({
     headers: new Headers({
-      Authorization: `Bearer${sessionToken}`,
+      authorization: `Bearer ${sessionToken}`,
     }),
   });
 
@@ -244,7 +244,11 @@ const changePassword = async (
       newPassword,
       revokeOtherSessions: true,
     },
+    headers: new Headers({
+      authorization: `Bearer ${sessionToken}`,
+    }),
   });
+
   if (session.user.needPasswordChange) {
     await prisma.user.update({
       where: {
@@ -275,11 +279,20 @@ const changePassword = async (
     emailVerified: session.user.emailVerified,
   });
 
-  return{
+  return {
     ...result,
     accessToken,
-    refreshToken
-  }
+    refreshToken,
+  };
+};
+
+const logoutUser = async (sessionToken: string) => {
+  const result = await auth.api.signOut({
+    headers: new Headers({
+      Authorization: `Bearer ${sessionToken}`,
+    }),
+  });
+  return result;
 };
 
 export const AUthService = {
@@ -287,4 +300,6 @@ export const AUthService = {
   signInUser,
   getMe,
   getNewToken,
+  changePassword,
+  logoutUser
 };
