@@ -4,5 +4,3 @@ node_modules
 dist
 
 /src/generated
-.windsurf/
-.claude/
