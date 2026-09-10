@@ -31,6 +31,15 @@ const setAccessTokenCookie = (res: Response, token: string) => {
     maxAge: 1000 * 60 * 60 * 24,
   });
 };
+const setRefreshTokenCookie = (res: Response, token: string) => {
+  cookieUtils.setCookie(res, "refreshToken", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    path: "/",
+    maxAge: 1000 * 60 * 60 * 24,
+  });
+};
 
 const setRefreshToken = (res: Response, token: string) => {
   cookieUtils.setCookie(res, "refreshToken", token, {
@@ -56,6 +65,7 @@ export const tokenUtils = {
   getAccessToken,
   getRefreshToken,
   setAccessTokenCookie,
+  setRefreshTokenCookie,
   setRefreshToken,
   setBetterAuthSessionCookie,
 };

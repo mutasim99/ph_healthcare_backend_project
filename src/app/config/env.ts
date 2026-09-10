@@ -11,6 +11,8 @@ interface EnvConfig {
   REFRESH_TOKEN_SECRET: string;
   ACCESS_TOKEN_EXPIRE_IN: string;
   REFRESH_TOKEN_EXPIRE_IN: string;
+  GOOGLE_CLIENT_ID: string;
+  GOOGLE_CLIENT_SECRET: string;
   EMAIL_SENDER: {
     SMTP_HOST: string;
     SMTP_PORT: string;
@@ -45,6 +47,8 @@ const loadEnvVariables = (): EnvConfig => {
     "CLOUDINARY_API_KEY",
     "CLOUDINARY_API_SECRET",
     "FRONTEND_URL",
+    "GOOGLE_CLIENT_ID",
+    "GOOGLE_CLIENT_SECRET",
   ];
 
   requireEnvVariables.forEach((variable) => {
@@ -63,6 +67,8 @@ const loadEnvVariables = (): EnvConfig => {
     REFRESH_TOKEN_SECRET: process.env.REFRESH_TOKEN_SECRET as string,
     ACCESS_TOKEN_EXPIRE_IN: process.env.ACCESS_TOKEN_EXPIRE_IN as string,
     REFRESH_TOKEN_EXPIRE_IN: process.env.REFRESH_TOKEN_EXPIRE_IN as string,
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID as string,
+    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET as string,
     EMAIL_SENDER: {
       SMTP_HOST: process.env.EMAIL_SENDER_SMTP_HOST as string,
       SMTP_PORT: process.env.EMAIL_SENDER_SMTP_PORT as string,
