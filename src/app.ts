@@ -29,19 +29,8 @@ app.use(
 );
 
 app.use(express.urlencoded({ extended: true }));
-
-app.use(express.json());
 app.use(cookieParser());
-
 app.use("/api/auth", toNodeHandler(auth));
-
-// Enable URL-encoded form data parsing
-app.use(express.urlencoded({ extended: true }));
-
-// Middleware to parse JSON bodies
-app.use(express.json());
-app.use(cookieParser());
-app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/v1", IndexRoutes);
 
@@ -53,6 +42,6 @@ app.get("/", async (req: Request, res: Response) => {
   });
 });
 
-app.use(globalErrorHandler);
 app.use(notFound);
+app.use(globalErrorHandler);
 export default app;
