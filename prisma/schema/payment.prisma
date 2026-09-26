@@ -2,7 +2,7 @@ model Payment {
     id                 String        @id @default(uuid(7))
     amount             Float
     transactionId      String        @unique @db.Uuid()
-    stripeEventID      String        @unique 
+    stripeEventID      String?        @unique 
     status             PaymentStatus @default(UNPAID)
     paymentGatewayData Json?
     createdAt          DateTime      @default(now())
