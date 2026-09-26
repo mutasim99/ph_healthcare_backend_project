@@ -9,6 +9,7 @@
     "dev": "tsx watch src/server.ts",
     "migrate": "prisma migrate dev",
     "generate": "prisma generate",
+    "stripe:webhook": "stripe listen --all-snapshot --forward-to localhost:5000/webhook",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -41,6 +42,7 @@
     "nodemailer": "^10.0.1",
     "pg": "^8.23.0",
     "qs": "^6.16.0",
+    "stripe": "^22.6.2",
     "tsx": "^4.23.12",
     "zod": "^4.5.2"
   },

@@ -20,6 +20,10 @@ interface EnvConfig {
     SMTP_PASS: string;
     SMTP_FROM: string;
   };
+  STRIPE: {
+    STRIPE_SECRET_KEY: string;
+    WEBHOOK_SECRET: string;
+  };
   CLOUDINARY: {
     CLOUDINARY_CLOUD_NAME: string;
     CLOUDINARY_API_KEY: string;
@@ -49,6 +53,8 @@ const loadEnvVariables = (): EnvConfig => {
     "FRONTEND_URL",
     "GOOGLE_CLIENT_ID",
     "GOOGLE_CLIENT_SECRET",
+    "STRIPE_SECRET_KEY",
+    "WEBHOOK_SECRET",
   ];
 
   requireEnvVariables.forEach((variable) => {
@@ -80,6 +86,10 @@ const loadEnvVariables = (): EnvConfig => {
       CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME as string,
       CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY as string,
       CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET as string,
+    },
+    STRIPE: {
+      STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY as string,
+      WEBHOOK_SECRET: process.env.WEBHOOK_SECRET as string,
     },
   };
 };
