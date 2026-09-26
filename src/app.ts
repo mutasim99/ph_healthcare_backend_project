@@ -10,6 +10,8 @@ import { toNodeHandler } from "better-auth/node";
 import { auth } from "./app/lib/auth";
 import qs from "qs";
 import { PaymentController } from "./app/modules/payment/payment.controller";
+import cron from "node-cron";
+import { AppointmentService } from "./app/modules/appointments/appointments.service";
 
 const app: Application = express();
 app.set("query parser", (str: string) => qs.parse(str));
@@ -35,10 +37,18 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
-
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 app.use("/api/auth", toNodeHandler(auth));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cookieParser());
+
+cron.schedule(" */25 * * * *", async () => {
+  try {
+    await AppointmentService.cancelUnpaidAppointment();
+  } catch (error) {
+    console.log("Error on cancelling appointments", error);
+  }
+});
 
 app.use("/api/v1", IndexRoutes);
 
