@@ -29,6 +29,8 @@ interface EnvConfig {
     CLOUDINARY_API_KEY: string;
     CLOUDINARY_API_SECRET: string;
   };
+  SUPER_ADMIN_EMAIL: string;
+  SUPER_ADMIN_PASSWORD: string;
 }
 
 const loadEnvVariables = (): EnvConfig => {
@@ -55,6 +57,8 @@ const loadEnvVariables = (): EnvConfig => {
     "GOOGLE_CLIENT_SECRET",
     "STRIPE_SECRET_KEY",
     "WEBHOOK_SECRET",
+    "SUPER_ADMIN_EMAIL",
+    "SUPER_ADMIN_PASSWORD"
   ];
 
   requireEnvVariables.forEach((variable) => {
@@ -91,7 +95,10 @@ const loadEnvVariables = (): EnvConfig => {
       STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY as string,
       WEBHOOK_SECRET: process.env.WEBHOOK_SECRET as string,
     },
+    SUPER_ADMIN_EMAIL: process.env.SUPER_ADMIN_EMAIL as string,
+    SUPER_ADMIN_PASSWORD: process.env.SUPER_ADMIN_PASSWORD as string,
   };
+
 };
 
 export const envVars = loadEnvVariables();
