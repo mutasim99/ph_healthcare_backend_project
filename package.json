@@ -9,7 +9,7 @@
     "dev": "tsx watch src/server.ts",
     "migrate": "prisma migrate dev",
     "generate": "prisma generate",
-    "stripe:webhook": "stripe listen --all-snapshot --forward-to localhost:5000/webhook",
+    "stripe:webhook": "stripe listen --events checkout.session.completed,checkout.session.expired,payment_intent.payment_failed --forward-to localhost:5000/webhook",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -45,6 +45,7 @@
     "qs": "^6.16.0",
     "stripe": "^22.6.2",
     "tsx": "^4.23.12",
+    "uuid": "^14.0.2",
     "zod": "^4.5.2"
   },
   "devDependencies": {

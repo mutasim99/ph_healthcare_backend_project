@@ -3,6 +3,7 @@ import { prisma } from "../../lib/prisma";
 import { PaymentStatus } from "../../../generated/prisma/enums";
 
 const handleStripeWebhook = async (event: Stripe.Event) => {
+  console.log("EVENT", event.type, event.id);
   const existingPayment = await prisma.payment.findFirst({
     where: {
       stripeEventID: event.id,
@@ -59,6 +60,7 @@ const handleStripeWebhook = async (event: Stripe.Event) => {
           },
         });
       });
+      console.log("METADATA", session.metadata, session.payment_status);
       console.log(
         `processed checkout.session.complete for appointment ${appointmentId} and payment ${paymentId}`,
       );

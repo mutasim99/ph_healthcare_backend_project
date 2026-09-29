@@ -1,4 +1,4 @@
-import { uuidv7 } from "zod";
+import { v7 as uuidv7 } from "uuid";
 import { IRequestUser } from "../../interface/request.interface";
 import { prisma } from "../../lib/prisma";
 import { IBookAppointmentPayload } from "./appointments.interface";
@@ -90,14 +90,14 @@ const bookAppointment = async (
             product_data: {
               name: `Appointment with Dr.${doctorData.name}`,
             },
-            unit_amount: doctorData.appointmentFee * 120,
+            unit_amount: doctorData.appointmentFee * 100,
           },
           quantity: 1,
         },
       ],
       metadata: {
         appointmentId: appointmentData.id,
-        paymentId: patientData.id,
+        paymentId: paymentData.id,
       },
 
       success_url: `${envVars.FRONTEND_URL}/dashboard/payment/payment-success`,
@@ -372,7 +372,7 @@ const initiatePayment = async (appointmentId: string, user: IRequestUser) => {
           product_data: {
             name: `Appointment with Dr.${appointmentData.doctor.name}`,
           },
-          unit_amount: appointmentData.doctor.appointmentFee,
+          unit_amount: appointmentData.doctor.appointmentFee * 100,
         },
         quantity: 1,
       },
