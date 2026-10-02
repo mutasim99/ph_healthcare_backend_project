@@ -60,7 +60,7 @@ const handleStripeWebhook = async (event: Stripe.Event) => {
           },
         });
       });
-      console.log("METADATA", session.metadata, session.payment_status);
+     
       console.log(
         `processed checkout.session.complete for appointment ${appointmentId} and payment ${paymentId}`,
       );
