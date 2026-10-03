@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Container */
+        .email-wrapper {
+            padding: 40px 20px;
+            width: 100%;
+            background-color: #f1f5f9;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Header */
+        .header {
+            background-color: #0284c7;
+            padding: 35px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #ffffff;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            color: #bae6fd;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Content Area */
+        .content {
+            padding: 40px 30px;
+        }
+
+        .greeting {
+            font-size: 18px;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .greeting strong {
+            color: #0284c7;
+        }
+
+        .intro-text {
+            color: #64748b;
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+
+        /* Data Cards */
+        .card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+        }
+
+        .card-header {
+            background-color: #f8fafc;
+            padding: 12px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            border-radius: 8px 8px 0 0;
+            font-size: 13px;
+            font-weight: 700;
+            color: #0284c7;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .info-row {
+            margin-bottom: 12px;
+            display: table;
+            width: 100%;
+        }
+
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-label {
+            display: table-cell;
+            width: 140px;
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .info-value {
+            display: table-cell;
+            color: #0f172a;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        /* Instructions Block */
+        .instructions-card {
+            background-color: #f0f9ff;
+            border-left: 4px solid #0284c7;
+            border-radius: 4px 8px 8px 4px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .instructions-title {
+            color: #0284c7;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .instructions-content {
+            color: #334155;
+            font-size: 15px;
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px 20px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border: 1px dashed #cbd5e1;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #0284c7;
+            color: #ffffff !important;
+            padding: 14px 32px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.2);
+            transition: background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #0369a1;
+        }
+
+        .cta-text {
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            padding: 15px 20px;
+            border-radius: 6px;
+            color: #92400e;
+            font-size: 13.5px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f8fafc;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer p {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: #0284c7;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-wrapper">
+        <div class="container">
+            
+            <!-- Header -->
+            <div class="header">
+                <h1>PH Healthcare</h1>
+                <p>Your Health, Our Priority</p>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content">
+                
+                <!-- Greeting -->
+                <div class="greeting">
+                    Hello <strong><%= patientName %></strong>,
+                </div>
+                <p class="intro-text">
+                    Your doctor has finalized your medical prescription. Please review the details of your visit below.
+                </p>
+
+                <!-- Doctor Info Card -->
+                <div class="card">
+                    <div class="card-header">Doctor Information</div>
+                    <div class="card-body">
+                        <div class="info-row">
+                            <span class="info-label">Physician</span>
+                            <span class="info-value"><%= doctorName %></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Specialty</span>
+                            <span class="info-value"><%= specialization %></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prescription Details Card -->
+                <div class="card">
+                    <div class="card-header">Prescription Summary</div>
+                    <div class="card-body">
+                        <div class="info-row">
+                            <span class="info-label">Prescription ID</span>
+                            <span class="info-value" style="color: #0284c7;">#<%= prescriptionId %></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Consultation Date</span>
+                            <span class="info-value"><%= appointmentDate %></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Issued Date</span>
+                            <span class="info-value"><%= issuedDate %></span>
+                        </div>
+                        <% if (followUpDate) { %>
+                        <div class="info-row" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e2e8f0;">
+                            <span class="info-label">Next Follow-up</span>
+                            <span class="info-value" style="color: #ea580c;"><%= followUpDate %></span>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+
+                <!-- Instructions Block -->
+                <div class="instructions-card">
+                    <div class="instructions-title">Medication & Instructions</div>
+                    <div class="instructions-content"><%= instructions %></div>
+                </div>
+
+                <!-- PDF Download CTA -->
+                <div class="cta-section">
+                    <div style="margin-bottom: 15px;">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="12" y1="18" x2="12" y2="12"></line>
+                            <polyline points="9 15 12 18 15 15"></polyline>
+                        </svg>
+                    </div>
+                    <% if (pdfUrl) { %>
+                    <a href="<%= pdfUrl %>" class="btn">Download Prescription PDF</a>
+                    <% } %>
+                    <p class="cta-text">A secure copy of this document has also been attached to this email.</p>
+                </div>
+
+                <!-- Important Notes -->
+                <div class="warning-box">
+                    <strong>Important:</strong>&nbsp;Please follow all medications and instructions provided by your doctor carefully. If you experience any unexpected side effects, contact your healthcare provider immediately.
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p>This is an automated email from PH Healthcare Services. Please do not reply directly to this message.</p>
+                <p>For support or more information, visit <a href="https://ph-healthcare.com">ph-healthcare.com</a></p>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
