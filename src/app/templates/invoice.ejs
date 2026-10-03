@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Receipt - PH Healthcare</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Container */
+        .email-wrapper {
+            padding: 40px 20px;
+            width: 100%;
+            background-color: #f1f5f9;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Header */
+        .header {
+            background-color: #0284c7;
+            padding: 35px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #ffffff;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            color: #bae6fd;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        /* Content Area */
+        .content {
+            padding: 40px 30px;
+        }
+
+        .greeting {
+            font-size: 18px;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .greeting strong {
+            color: #0284c7;
+        }
+
+        .intro-text {
+            color: #64748b;
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+
+        /* Data Cards */
+        .card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+
+        .card-header {
+            background-color: #f8fafc;
+            padding: 12px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 13px;
+            font-weight: 700;
+            color: #0284c7;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .info-row {
+            margin-bottom: 12px;
+            display: table;
+            width: 100%;
+        }
+
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-label {
+            display: table-cell;
+            width: 140px;
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 500;
+            vertical-align: middle;
+        }
+
+        .info-value {
+            display: table-cell;
+            color: #0f172a;
+            font-size: 15px;
+            font-weight: 600;
+            vertical-align: middle;
+        }
+
+        /* Badges */
+        .badge-success {
+            display: inline-block;
+            background-color: #dcfce7;
+            color: #166534;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Receipt Summary */
+        .receipt-summary {
+            background-color: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .receipt-row {
+            display: table;
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .receipt-total-row {
+            display: table;
+            width: 100%;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #cbd5e1;
+        }
+
+        .receipt-label {
+            display: table-cell;
+            color: #475569;
+            font-size: 15px;
+        }
+
+        .receipt-value {
+            display: table-cell;
+            text-align: right;
+            color: #0f172a;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .total-label {
+            display: table-cell;
+            color: #0f172a;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .total-value {
+            display: table-cell;
+            text-align: right;
+            color: #0284c7;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #0284c7;
+            color: #ffffff !important;
+            padding: 14px 32px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.2);
+            transition: background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #0369a1;
+        }
+
+        .cta-text {
+            color: #64748b;
+            font-size: 13.5px;
+            margin-bottom: 15px;
+        }
+
+        /* Info Box */
+        .info-box {
+            background-color: #f0f9ff;
+            border-left: 4px solid #0284c7;
+            padding: 15px 20px;
+            border-radius: 4px 8px 8px 4px;
+            color: #0369a1;
+            font-size: 13.5px;
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f8fafc;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer p {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .footer a {
+            color: #0284c7;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-wrapper">
+        <div class="container">
+            
+            <!-- Header -->
+            <div class="header">
+                <h1>Invoice</h1>
+                <p>Healthcare Payment Receipt</p>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content">
+                
+                <!-- Greeting -->
+                <div class="greeting">
+                    Hello <strong><%= patientName %></strong>,
+                </div>
+                <p class="intro-text">
+                    Your payment for your consultation appointment has been successfully processed. Below is a copy of your receipt.
+                </p>
+
+                <!-- Transaction Details Card -->
+                <div class="card">
+                    <div class="card-header">Transaction Details</div>
+                    <div class="card-body">
+                        <div class="info-row">
+                            <span class="info-label">Invoice ID</span>
+                            <span class="info-value" style="color: #0284c7;">#<%= invoiceId %></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Transaction ID</span>
+                            <span class="info-value"><%= transactionId %></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Date Paid</span>
+                            <span class="info-value"><%= paymentDate %></span>
+                        </div>
+                        <div class="info-row" style="margin-top: 4px;">
+                            <span class="info-label">Status</span>
+                            <span class="info-value"><span class="badge-success">✓ Paid</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Consultation Details Card -->
+                <div class="card">
+                    <div class="card-header">Consultation Details</div>
+                    <div class="card-body">
+                        <div class="info-row">
+                            <span class="info-label">Provider</span>
+                            <span class="info-value"><%= doctorName %></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Appointment</span>
+                            <span class="info-value"><%= appointmentDate %></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Receipt Summary -->
+                <div class="receipt-summary">
+                    <div class="receipt-row">
+                        <span class="receipt-label">Consultation Fee</span>
+                        <span class="receipt-value"><%= amount.toFixed(2) %> BDT</span>
+                    </div>
+                    
+                    <div class="receipt-total-row">
+                        <span class="total-label">Total Amount Paid</span>
+                        <span class="total-value"><%= amount.toFixed(2) %> BDT</span>
+                    </div>
+                </div>
+
+                <!-- Download Invoice CTA -->
+                <div class="cta-section">
+                    <p class="cta-text">A PDF copy of this invoice is attached to this email. You can also download it securely below.</p>
+                    <% if (invoiceUrl) { %>
+                    <a href="<%= invoiceUrl %>" class="btn">Download Invoice PDF</a>
+                    <% } %>
+                </div>
+
+                <!-- Next Steps Info Box -->
+                <div class="info-box">
+                    <strong>Next Steps:</strong> Your appointment is confirmed. Please log in to your patient dashboard to view further details and prepare for your consultation.
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p style="font-size: 14px; font-weight: 600; color: #475569; margin-bottom: 12px;">PH Healthcare &bull; Your Health, Our Priority</p>
+                <p>If you have any questions regarding this payment, please <a href="mailto:support@ph-healthcare.com">Contact Support</a>.</p>
+                <p>&copy; 2026 PH Healthcare. All rights reserved.</p>
+                <p style="margin-top: 15px;">This is an automatically generated receipt. Please do not reply directly to this email.</p>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
