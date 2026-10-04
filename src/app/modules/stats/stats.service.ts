@@ -13,10 +13,10 @@ const getDashboardStatsData = async (user: IRequestUser) => {
       statsData = await getAdminStatsData();
       break;
     case Role.DOCTOR:
-      statsData = await getDoctorStatsData();
+      statsData = await getDoctorStatsData(user);
       break;
     case Role.PATIENT:
-      statsData = await getPatientStatsData();
+      statsData = await getPatientStatsData(user);
       break;
     default:
       statsData = null;
@@ -157,7 +157,7 @@ const getDoctorStatsData = async (user: IRequestUser) => {
   };
 };
 
-const getPatientStatsData = async () => {
+const getPatientStatsData = async (user: IRequestUser) => {
   const patientData = await prisma.patient.findUniqueOrThrow({
     where: {
       email: user.email,
@@ -199,6 +199,6 @@ const getPatientStatsData = async () => {
   };
 };
 
-export const statsService ={
-    getDashboardStatsData,
-}
+export const statsService = {
+  getDashboardStatsData,
+};
