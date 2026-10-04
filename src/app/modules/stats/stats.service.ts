@@ -199,6 +199,37 @@ const getPatientStatsData = async (user: IRequestUser) => {
   };
 };
 
+const getPieChartData = async () => {
+  const appointmentStatusDistribution = await prisma.appointment.groupBy({
+    by: ["status"],
+    _count: {
+      id: true,
+    },
+  });
+
+  const formattedAppointmentStatusDistribution =
+    appointmentStatusDistribution.map(({ _count, status }) => ({
+      status,
+      count: _count.id,
+    }));
+  return formattedAppointmentStatusDistribution;
+};
+
+const getBarChartData = async () => {
+  interface AppointmentCountByMonth {
+    month: Date;
+    count: bigint;
+  }
+
+  const appointmentCountByMonth: AppointmentCountByMonth[] =
+    await prisma.$queryRaw`
+  SELECT DATE_TRUNC('month', "createdAt") AS month, COUNT(*) AS count
+  FROM "appointments"
+  GROUP BY month
+    ORDER BY month ASC;
+  `;
+};
+
 export const statsService = {
   getDashboardStatsData,
 };
