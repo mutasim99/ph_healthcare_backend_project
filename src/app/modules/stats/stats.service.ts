@@ -54,6 +54,9 @@ const getSuperAdminStatsData = async () => {
     },
   });
 
+  const pieChartData = await getPieChartData();
+  const barChartData = await getBarChartData();
+
   return {
     appointmentCount,
     doctorCount,
@@ -63,6 +66,8 @@ const getSuperAdminStatsData = async () => {
     paymentCount,
     userCount,
     totalRevenue: totalRevenue._sum.amount || 0,
+    pieChartData,
+    barChartData,
   };
 };
 
@@ -80,6 +85,10 @@ const getAdminStatsData = async () => {
       status: PaymentStatus.PAID,
     },
   });
+
+  const pieChartData = await getPieChartData();
+  const barChartData = await getBarChartData();
+
   return {
     appointmentCount,
     doctorCount,
@@ -88,6 +97,8 @@ const getAdminStatsData = async () => {
     paymentCount,
     userCount,
     totalRevenue: totalRevenue._sum.amount || 0,
+    pieChartData,
+    barChartData,
   };
 };
 
@@ -228,6 +239,8 @@ const getBarChartData = async () => {
   GROUP BY month
     ORDER BY month ASC;
   `;
+
+  return appointmentCountByMonth;
 };
 
 export const statsService = {
