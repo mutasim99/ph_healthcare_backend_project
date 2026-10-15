@@ -7,6 +7,10 @@ import { handleZodError } from "../errorHelper/handleZodError";
 import AppError from "../errorHelper/appError";
 import { deleteFromCloudinary } from "../config/cloudinary.config";
 import { deleteUploadedFilesFromGlobalErrorHandler } from "../utils/deleteUploadedFilesFromGlobalErrorHandler";
+import { PrismaClientKnownRequestError } from "../../generated/prisma/internal/prismaNamespace";
+import { Prisma } from "../../generated/prisma/client";
+import { handlePrismaClientUnknownError } from "../errorHelper/handlePrismaError";
+import { el } from "zod/v4/locales";
 
 export const globalErrorHandler = async (
   err: any,
@@ -32,8 +36,34 @@ export const globalErrorHandler = async (
   let errorSources: TErrorSources[] = [];
   let statusCode: number = status.INTERNAL_SERVER_ERROR;
   let message: string = "Internal server error";
-
-  if (err instanceof z.ZodError) {
+  let stack: string | undefined = undefined;
+  if (err instanceof Prisma.PrismaClientKnownRequestError) {
+    const simplifiedError = handlePrismaClientUnknownError(err);
+    message = simplifiedError.message;
+    errorSources = [...simplifiedError.errorSources];
+    stack = simplifiedError.stack;
+  } else if (err instanceof Prisma.PrismaClientUnknownRequestError) {
+    const simplifiedError = handlePrismaClientUnknownError(err);
+    message = simplifiedError.message;
+    errorSources = [...simplifiedError.errorSources];
+    stack = simplifiedError.stack;
+  } else if (err instanceof Prisma.PrismaClientValidationError) {
+    const simplifiedError = handlePrismaClientUnknownError(err);
+    message = simplifiedError.message;
+    errorSources = [...simplifiedError.errorSources];
+    stack = simplifiedError.stack;
+  } else if (err instanceof Prisma.PrismaClientRustPanicError) {
+    const simplifiedError = handlePrismaClientUnknownError(err);
+    message = simplifiedError.message;
+    errorSources = [...simplifiedError.errorSources];
+    stack = simplifiedError.stack;
+  } else if (err instanceof Prisma.PrismaClientInitializationError) {
+    const simplifiedError = handlePrismaClientUnknownError(err);
+    message = simplifiedError.message;
+    errorSources = [...simplifiedError.errorSources];
+    stack = simplifiedError.stack;
+  } 
+  else if (err instanceof z.ZodError) {
     const simplifiedError = handleZodError(err);
     statusCode = simplifiedError.statusCode as number;
     message = simplifiedError.message;
@@ -63,6 +93,7 @@ export const globalErrorHandler = async (
     success: false,
     message: "Internal Server Error",
     error: err.message,
+    stack,
   };
   res.status(status.INTERNAL_SERVER_ERROR).json(errorResponse);
 };
